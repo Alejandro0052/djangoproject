@@ -10,20 +10,20 @@ from django.shortcuts import render
 def index(request):
     return render(request,'Index.html')
 
+def about(request):
+    return render(request,'About.html')
+
+
 def hello(request, username):
     print(username)
     return HttpResponse('<h2>Hello %s</h2>' % username)
     
 
-def about(request):
-    return HttpResponse('<h1>About us</h1>')
-
 def projects(request):
     projects = list(Project.objects.values())
-    return JsonResponse(projects, safe=False)
+    return render(request, 'projects.html')
 
-def tasks(request, id):
-   # task = Task.objects.get(id=id)
-    task = get_object_or_404(Task, id=id)
-    return HttpResponse('task: %s ' % task.title)
+def tasks(request):
+ #   task = Task.objects.get(title=title)
+    return render(request,'tasks.html')
 
